@@ -55,7 +55,9 @@ request(encodeUrl,(err,respones,body) => {
         ring();
         console.log('jb');
         // 设置定时 即 当铃声播放完毕后继续重复播放 直到按下空格停止，并终止程序
-        this.timer = setInterval(ring, 40100) 
+        this.timer = setInterval(ring, 40100)
+        // 超过5分钟停止
+        setTimeout(() => { process.exit()}, 300000)
       }
     } else {
       if ([5,6].indexOf(week) > -1) { // 判断是都为周末
@@ -67,7 +69,9 @@ request(encodeUrl,(err,respones,body) => {
         ring();
         console.log('shangban');
         // 设置定时 即 当铃声播放完毕后继续重复播放 直到按下空格停止，并终止程序
-        this.timer = setInterval(ring, 40100) 
+        this.timer = setInterval(ring, 40100)
+        // 超过5分钟停止
+        setTimeout(() => { process.exit()}, 300000)
       }
     }
     
@@ -96,13 +100,12 @@ process.stdin.on('keypress',(ch,key) => {
     clearInterval(this.timer)
     this.alarm.kill();
     setVolume(defaultVolume);
-    setMute(muted);
+    setMute(muted); 
     process.exit();
   }
 })
 process.stdin.setRawMode(true);
 // process.stdin.resume();
-
 
 
 
