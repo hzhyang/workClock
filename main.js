@@ -60,7 +60,7 @@ request(encodeUrl,(err,respones,body) => {
         setTimeout(() => { process.exit()}, 300000)
       }
     } else {
-      if ([5,6].indexOf(week) > -1) { // 判断是都为周末
+      if ([6,0].indexOf(week) > -1) { // 判断是都为周末
         // 休息
         console.log('xxweek');
         process.exit();
