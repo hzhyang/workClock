@@ -1,14 +1,14 @@
 const request = require('request');
 const player = require('play-sound')();
 const keypress = require('keypress');
-const { volume } = require('node-audio-linux');
+// const { volume } = require('node-audio-linux');
 
 const dir = '/home/zilong/node/alarmClock';
 // 获取系统音量 方法
-const { getVolume,setVolume, isMuted, setMute } = volume;
+// const { getVolume,setVolume, isMuted, setMute } = volume;
 // 获取音量
-const muted = isMuted();
-const defaultVolume = getVolume().toFixed(2);
+// const muted = isMuted();
+// const defaultVolume = getVolume().toFixed(2);
 // 获取现在时间
 const date = new Date()
 const ms = date.getTime();
@@ -83,9 +83,9 @@ request(encodeUrl,(err,respones,body) => {
 // 设置铃声并播放
 const ring = () => {
 // 设置非静音 并设置音量大小
-  setMute(false);
-  setVolume(0.80);
-  this.alarm = player.play(dir+'/ring/fellforu.mp3',function(err) {
+  // setMute(false);
+  // setVolume(0.80);
+  this.alarm = player.play('./ring/fellforu.mp3',function(err) {
     if (err){
       throw err
     }
@@ -99,8 +99,8 @@ process.stdin.on('keypress',(ch,key) => {
   if (key && key.name === 'space') {
     clearInterval(this.timer)
     this.alarm.kill();
-    setVolume(defaultVolume);
-    setMute(muted); 
+    // setVolume(defaultVolume);
+    // setMute(muted); 
     process.exit();
   }
 })
